@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>Мой магазин</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css"/>
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="../../css/slick.css"/>
+  <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css"/>
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="../../css/nouislider.min.css"/>
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="../../css/font-awesome.min.css">
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="../../css/style.css"/>
+
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+</head>
+<body>
+
+
+<!-- HEADER -->
+
+<div th:insert="header"></div>
+
+<!-- /HEADER -->
+
+<!-- NAVIGATION -->
+<nav id="navigation">
+  <!-- container -->
+  <div class="container">
+    <!-- responsive-nav -->
+    <div id="responsive-nav">
+      <!-- NAV -->
+      <ul class="main-nav nav navbar-nav">
+        <li class="active"><a href="/main">Главная</a></li>
+        <li><a href="/category?category=laptop">Ноутбуки</a></li>
+        <li><a href="/category?category=phone">Телефоны</a></li>
+      </ul>
+      <!-- /NAV -->
+    </div>
+    <!-- /responsive-nav -->
+  </div>
+  <!-- /container -->
+</nav>
+<!-- /NAVIGATION -->
+<!-- BREADCRUMB -->
+<div id="breadcrumb" class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="breadcrumb-tree" th:with="listSize=${#lists.size(products)}">
+          <li>Найдено товаров - [[${listSize}]]</li>
+        </ul>
+      </div>
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /BREADCRUMB -->
+<!-- SECTION -->
+<div class="section">
+  <!-- container -->
+  <div class="container">
+    <!-- row -->
+    <div class="row">
+      <!-- ASIDE -->
+      <div id="aside" class="col-md-4">
+      </div>
+      <!-- /ASIDE -->
+      <!-- STORE -->
+      <div id="store" class="col-md-12">
+
+        <!-- store products -->
+        <div class="row">
+          <!-- product -->
+          <div th:each="item : ${products}" class="col-md-3 col-xs-6">
+            <div class="product">
+              <div class="product-img">
+
+
+                <a th:href="@{/product(id=${item.id})}">
+                  <img th:src="${item.path}" alt="" style="max-width: 100%; max-height: 100%;">
+                </a>
+                <div class="product-label">
+                  <span class="sale">-30%</span>
+                  <span class="new">NEW</span>
+                </div>
+              </div>
+              <div class="product-body">
+                <h3 class="product-name"><a th:href="@{/product(id=${item.id})}" th:text="${item.name}"></a></h3>
+                <h4 class="product-price" th:text="${item.price}">${item.getPrice()}
+
+                </h4>
+
+
+                <div class="product-rating">
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                  <i class="fa fa-star"></i>
+                </div>
+
+              </div>
+              <div class="add-to-cart">
+                <button class="add-to-cart-btn" th:onclick="|javascript:window.location.href='/cart/add-to-cart?id=${item.id}'|">
+                  <i class="fa fa-shopping-cart"></i>Добавить в корзину
+                </button>
+              </div>
+            </div>
+          </div>
+          </c:forEach>
+
+
+          <div class="clearfix visible-sm visible-xs"></div>
+
+        </div>
+        <!-- /store products -->
+
+      </div>
+      <!-- /STORE -->
+    </div>
+    <!-- /row -->
+  </div>
+  <!-- /container -->
+</div>
+<!-- /SECTION -->
+
+<!-- FOOTER -->
+
+<div th:insert="footer"></div>
+
+<!-- /FOOTER -->
+
+
+</body>
+
+</html>

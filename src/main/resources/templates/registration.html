@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+  <title>My account</title>
+
+  <!-- Google font -->
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,700" rel="stylesheet">
+
+  <!-- Bootstrap -->
+  <link type="text/css" rel="stylesheet" href="../../css/bootstrap.min.css"/>
+
+  <!-- Slick -->
+  <link type="text/css" rel="stylesheet" href="../../css/slick.css"/>
+  <link type="text/css" rel="stylesheet" href="../../css/slick-theme.css"/>
+
+  <!-- nouislider -->
+  <link type="text/css" rel="stylesheet" href="../../css/nouislider.min.css"/>
+
+  <!-- Font Awesome Icon -->
+  <link rel="stylesheet" href="../../css/font-awesome.min.css">
+
+  <!-- Custom stlylesheet -->
+  <link type="text/css" rel="stylesheet" href="../../css/style.css"/>
+
+  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    .narrow-input {
+      max-width: 300px;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+<div th:insert="accountheader"></div>
+
+
+<div class="container  text-center">
+  <form th:method="POST" th:action="@{/account/signup}" th:object="${user}">
+    <div id="registrationLbl">
+      <label>Регистрация</label>
+    </div>
+
+    <div class="form-group col-lg-12">
+      <input id="name" class="form-control narrow-input" type="text" placeholder="Имя" th:field="*{name}">
+      <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+
+    <!--  <p>-->
+    <!--    <label for="name">Имя: </label>-->
+    <!--    <input type="text" th:field="*{name}" id="name"/>-->
+    <!--  <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>-->
+    <!--  </p>-->
+
+    <div class="form-group col-lg-12">
+      <input id="surname" class="form-control narrow-input" type="text" placeholder="Фамилия" th:field="*{surname}">
+      <div style="color:red" th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}">Surname error</div>
+    </div>
+
+    <div class="form-group col-lg-12">
+      <input id="email" class="form-control narrow-input" type="text" placeholder="Почта" th:field="*{email}">
+      <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    </div>
+
+    <div class="form-group col-lg-12">
+      <input id="password" class="form-control narrow-input" type="text" placeholder="Пароль" th:field="*{password}">
+      <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+    </div>
+
+    <div class="form-group col-lg-12">
+      <label for="birthday">Дата рождения:</label>
+      <input id="birthday" class="form-control narrow-input" type="date" th:field="*{birthday}">
+      <div style="color:red" th:if="${#fields.hasErrors('birthday')}" th:errors="*{birthday}">Birthday error</div>
+    </div>
+
+
+    <p>
+      <button type="submit">Отправить</button>
+    </p>
+
+  </form>
+</div>
+
+
+<div th:insert="footer"></div>
+</body>
+
+</html>
